@@ -3,4 +3,5 @@ Orquestra a ingestão seletiva e versionada de artefatos do data lake da ADAI pa
 
 # Publicações 
 
+# Data - Descrição - Desenvolvedor 
 13/06/2025 - Criação e configurção do repositório - Jonatan Saraiva
