@@ -1,0 +1,15 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "orders",
+      "authLevel": "function"
+    },
+    {
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "ADAI_Data_Acquisition.py"
+}
