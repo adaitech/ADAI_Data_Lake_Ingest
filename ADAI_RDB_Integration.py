@@ -4,8 +4,8 @@ import logging
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
 
-@app.route(route="ADAI_Data_Acquisition")
-def ADAI_Data_Acquisition(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="ADAI_RDB_Integration")
+def ADAI_RDB_Integration(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')

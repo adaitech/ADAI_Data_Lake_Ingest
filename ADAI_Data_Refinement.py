@@ -4,9 +4,10 @@ import azure.functions as func
 app = func.FunctionApp()
 
 
+@app.function_name(name="ADAI_Data_Refinement")
 @app.timer_trigger(schedule="0 6 * * TUE", arg_name="myTimer", run_on_startup=False,
                    use_monitor=False)
-def ADAI_Data_Acquisition(myTimer: func.TimerRequest) -> None:
+def ADAI_Data_Refinement(myTimer: func.TimerRequest) -> None:
     if myTimer.past_due:
         logging.info('The timer is past due!')
 
