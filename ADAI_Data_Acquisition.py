@@ -11,6 +11,7 @@ from datetime import datetime
 app = func.FunctionApp()
 
 
+@app.function_name(name="ADAI_Data_Acquisition")
 @app.timer_trigger(
     schedule="0 2 * * TUE",
     arg_name="myTimer",
@@ -34,7 +35,7 @@ def ADAI_Data_Acquisition(myTimer: func.TimerRequest) -> None:
     data_formatada = datetime.today().strftime('%Y%m%d')
 
     ACCOUNT_NAME = os.environ.get(ACCOUNT_NAME)
-    ACCOUNT_KEY = os.environ.get(ACCOUNT_KEY) 
+    ACCOUNT_KEY = os.environ.get(ACCOUNT_KEY)
     CONTAINER_NAME = "raw"
     BLOB_NAME = f"{name_file}/{name_file}_{data_formatada}.csv"
 
@@ -107,4 +108,3 @@ def ADAI_Data_Acquisition(myTimer: func.TimerRequest) -> None:
         logger.info("Nenhum dado coletado da API.")
 
     logging.info('Python timer trigger function executed.')
-
