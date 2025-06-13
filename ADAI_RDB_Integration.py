@@ -1,13 +1,26 @@
-import logging
 import azure.functions as func
+import logging
 
-app = func.FunctionApp()
+app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
 
-@app.timer_trigger(schedule="0 8 * * TUE", arg_name="myTimer", run_on_startup=False,
-                   use_monitor=False)
-def ADAI_Data_Acquisition(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info('The timer is past due!')
+@app.route(route="ADAI_Data_Acquisition")
+def ADAI_Data_Acquisition(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
 
-    logging.info('Python timer trigger function executed.')
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+            "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+            status_code=200
+        )
