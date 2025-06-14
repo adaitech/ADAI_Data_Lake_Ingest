@@ -10,7 +10,7 @@ app = func.FunctionApp()
 
 @app.timer_trigger(schedule="0 5 * * * *", arg_name="ADAI_Func_Data_Acquisition", run_on_startup=False,
                    use_monitor=False)
-def ADAI_Func_Data_Acquisition(myTimer: func.TimerRequest) -> None:
+def timer_trigger(myTimer: func.TimerRequest) -> None:
     if myTimer.past_due:
         logging.info('The timer is past due!')
 
@@ -19,34 +19,34 @@ def ADAI_Func_Data_Acquisition(myTimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function executed.')
 
 
-@app.timer_trigger(schedule="0 10 * * * *", arg_name="ADAI_Func_Landing_Zone_Load", run_on_startup=False,
-                   use_monitor=False)
-def ADAI_Func_Landing_Zone_Load(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info('The timer is past due!')
+# @app.timer_trigger(schedule="0 10 * * * *", arg_name="ADAI_Func_Landing_Zone_Load", run_on_startup=False,
+#                    use_monitor=False)
+# def timer_trigger(myTimer: func.TimerRequest) -> None:
+#     if myTimer.past_due:
+#         logging.info('The timer is past due!')
 
-    ADAI_Landing_Zone_Load.Landing_Zone_Load(myTimer)
+#     ADAI_Landing_Zone_Load.Landing_Zone_Load(myTimer)
 
-    logging.info('Python timer trigger function executed.')
-
-
-@app.timer_trigger(schedule="0 15 * * * *", arg_name="ADAI_Func_RDB_Integration", run_on_startup=False,
-                   use_monitor=False)
-def ADAI_Func_RDB_Integration(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info('The timer is past due!')
-
-    ADAI_Data_Refinement.Data_Refinement(myTimer)
-
-    logging.info('Python timer trigger function executed.')
+#     logging.info('Python timer trigger function executed.')
 
 
-@app.timer_trigger(schedule="0 20 * * * *", arg_name="ADAI_Func_Landing_Zone_Load", run_on_startup=False,
-                   use_monitor=False)
-def ADAI_Func_Landing_Zone_Load(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info('The timer is past due!')
+# @app.timer_trigger(schedule="0 15 * * * *", arg_name="ADAI_Func_RDB_Integration", run_on_startup=False,
+#                    use_monitor=False)
+# def timer_trigger(myTimer: func.TimerRequest) -> None:
+#     if myTimer.past_due:
+#         logging.info('The timer is past due!')
 
-    ADAI_RDB_Integration.RDB_Integration(myTimer)
+#     ADAI_Data_Refinement.Data_Refinement(myTimer)
 
-    logging.info('Python timer trigger function executed.')
+#     logging.info('Python timer trigger function executed.')
+
+
+# @app.timer_trigger(schedule="0 20 * * * *", arg_name="ADAI_Func_Landing_Zone_Load", run_on_startup=False,
+#                    use_monitor=False)
+# def timer_trigger(myTimer: func.TimerRequest) -> None:
+#     if myTimer.past_due:
+#         logging.info('The timer is past due!')
+
+#     ADAI_RDB_Integration.RDB_Integration(myTimer)
+
+#     logging.info('Python timer trigger function executed.')
