@@ -8,18 +8,12 @@ import os
 from azure.storage.blob import BlobServiceClient
 from datetime import datetime
 
-app = func.FunctionApp()
 
-
-@app.function_name(name="ADAI_Data_Acquisition")
-@app.timer_trigger(
-    schedule="01:00:00",  # Executa a cada hora
-    arg_name="myTimer",
-    run_on_startup=False,
-    use_monitor=False
-)
-def ADAI_Data_Acquisition(myTimer: func.TimerRequest) -> None:
+def Data_Acquisition(myTimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function started.')
+
+    if myTimer.past_due:
+        logging.info('The timer is past due!')
 
     # Configuração do logger
     logging.basicConfig(

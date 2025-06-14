@@ -1,13 +1,10 @@
 import logging
 import azure.functions as func
 
-app = func.FunctionApp()
 
+def Data_Refinement(myTimer: func.TimerRequest) -> None:
 
-@app.function_name(name="ADAI_Data_Refinement")
-@app.timer_trigger(schedule="0 6 * * TUE", arg_name="myTimer", run_on_startup=False,
-                   use_monitor=False)
-def ADAI_Data_Refinement(myTimer: func.TimerRequest) -> None:
+    logging.info('Python timer trigger function started.')
     if myTimer.past_due:
         logging.info('The timer is past due!')
 
