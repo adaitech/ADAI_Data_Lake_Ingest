@@ -1,8 +1,8 @@
 import logging
-import ADAI_Data_Acquisition
-import ADAI_Landing_Zone_Load
-import ADAI_Data_Refinement
-import ADAI_RDB_Integration
+# import ADAI_Data_Acquisition
+# import ADAI_Landing_Zone_Load
+# import ADAI_Data_Refinement
+# import ADAI_RDB_Integration
 import azure.functions as func
 
 app = func.FunctionApp()
@@ -11,10 +11,12 @@ app = func.FunctionApp()
 @app.timer_trigger(schedule="0 5 * * * *", arg_name="ADAI_Func_Data_Acquisition", run_on_startup=False,
                    use_monitor=False)
 def timer_trigger(myTimer: func.TimerRequest) -> None:
+
+    logging.info('Python timer trigger function started.')
     if myTimer.past_due:
         logging.info('The timer is past due!')
 
-    ADAI_Data_Acquisition.Data_Acquisition(myTimer)
+    # ADAI_Data_Acquisition.Data_Acquisition(myTimer)
 
     logging.info('Python timer trigger function executed.')
 
