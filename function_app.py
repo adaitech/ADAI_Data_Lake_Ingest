@@ -17,6 +17,15 @@ def ADAI_Func_Data_Acquisition(myTimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function executed.')
 
 
+@app.timer_trigger(schedule="0 10 * * * *", arg_name="myTimer", run_on_startup=False,
+                   use_monitor=False)
+def ADAI_Func_Landing_Zone_Load(myTimer: func.TimerRequest) -> None:
+    if myTimer.past_due:
+        logging.info('The timer is past due!')
+
+    logging.info('Python timer trigger function executed.')
+
+
 # @app.timer_trigger(schedule="0 5 * * * *", arg_name="ADAI_Func_Data_Acquisition", run_on_startup=False,
 #                    use_monitor=False)
 # def timer_trigger(myTimer: func.TimerRequest) -> None:
